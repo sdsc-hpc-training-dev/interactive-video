@@ -21,7 +21,7 @@ Refactored old interactive video project into a modular & easy to use template
 
 Here's annotated `config.json` in `template` directory:
 
-```json
+```
 {
     "title": "HPC Training Week 4 CUDA w/ Python", // Window and document title
     "subtitle": "Sample subtitle",
