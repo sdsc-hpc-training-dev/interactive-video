@@ -34,8 +34,8 @@ Here's annotated `config.json` in `template` directory:
         "Link1": "https://sdsc.edu",
         "Link2": "https://github.com"
     }, // Links, [Text Content: key]: [Link: value]
-    "mp4_path": "recordings/week4.mp4", // Path to find the video file
-    "vtt_path": "recordings/week4.vtt" // Path to find the transcript file
+    "mp4_path": "../recordings/week4.mp4", // Path to find the video file
+    "vtt_path": "../recordings/week4.vtt" // Path to find the transcript file
 }
 ```
 

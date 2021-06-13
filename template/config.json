@@ -10,6 +10,6 @@
         "Link1": "https://sdsc.edu",
         "Link2": "https://github.com"
     },
-    "mp4_path": "recordings/week4.mp4",
-    "vtt_path": "recordings/week4.vtt"
+    "mp4_path": "../recordings/week4.mp4",
+    "vtt_path": "../recordings/week4.vtt"
 }
