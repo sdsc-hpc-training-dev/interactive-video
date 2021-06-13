@@ -1,0 +1,68 @@
+html,
+body {
+    min-width: 100vh;
+    overflow-x: hidden;
+}
+
+video::cue {
+    font-size: 1rem;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d31821d0;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(0, 0, 0);
+}
+
+#sub-content {
+    width: auto;
+    min-height: 60vh;
+}
+
+#title {
+    text-align: center;
+}
+
+#content-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#transcript {
+    width: 500px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+#video {
+    padding: 20px;
+}
+
+#toc {
+    font-weight: bold;
+}
+
+#toc > a {
+    cursor: pointer;
+}
+
+.cue {
+    margin-bottom: 2px;
+    transition: color background-color 0.75s ease;
+}
+
+.cue:hover {
+    color: #0160e4;
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: rgb(255, 255, 128);
+}

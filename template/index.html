@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link
+            href="https://www.sdsc.edu/assets/images/favicon.ico"
+            rel="icon"
+            type="image/x-icon"
+        />
+        <link type="text/css" rel="stylesheet" href="../sdsc/css/default.css" />
+        <link type="text/css" rel="stylesheet" href="../sdsc/css/default+en.css" />
+        <link type="text/css" rel="stylesheet" href="../sdsc/css/common_clean.css" />
+        <link type="text/css" rel="stylesheet" href="../assets/css/index.css" />
+        <script src="../sdsc/js/index.js"></script>
+        <script src="../assets/js/loader.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div id="header"></div>
+        <div data-content>
+            <!-- Breadcrumbs -->
+            <div data-breadcrumbs data-inner>
+                <ul id="nav-breadcrumbs"></ul>
+            </div>
+            <!-- Main Content -->
+            <section data-row="2" id="sub-content" data-inner>
+                <div data-col="1">
+                    <h1 id="title"></h1>
+                    <div id="content-container">
+                        <!-- <p><strong><a href="2021-02-21-Webinar-Rich Data Sharing for HPC Users.pdf" target="new">Slides</a> | <a href="https://youtu.be/eVqzNbI1EAo" target="new">Youtube</a> | <a href="assets/recording/GMT20210422-184722_Recording.txt" target="_new" onClick="save_search_term(1,123,'chat')" onmouseover style="cursor: pointer">Chat Text</a></strong></p> -->
+                        <div>
+                            <p><em id="subtitle"></em></p>
+                            <p id="description"></p>
+                            <p><strong id="links"></strong></p>
+                            <hr />
+                            <h2>Table of Contents</h2>
+                            <div id="toc"></div>
+                            <hr />
+                            <div style="margin-bottom: 5px">
+                                <span style="font-size: 24px; font-weight: bold"
+                                    >Transcript</span
+                                >
+                                <span style="font-weight: bold; float: right"
+                                    >Auto Scroll
+                                    <input id="auto-scroll" type="checkbox" checked
+                                /></span>
+                            </div>
+                            <div id="transcript"></div>
+                            <hr />
+                        </div>
+                        <div>
+                            <video id="video" width="720" height="480" controls></video>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- Footer -->
+        <div id="footer"></div>
+    </body>
+</html>

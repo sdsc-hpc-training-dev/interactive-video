@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# Except these files
+!.gitignore
+!.prettierrc
+!README.md
+!php
+!php/**
+!sdsc
+!sdsc/**
+!assets
+!assets/**
+!template
+!template/**

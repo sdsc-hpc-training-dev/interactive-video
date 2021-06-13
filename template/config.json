@@ -1,0 +1,15 @@
+{
+    "title": "HPC Training Week 4 CUDA w/ Python",
+    "subtitle": "Sample subtitle",
+    "description": "Sample description",
+    "toc": {
+        "TOC1": "01:50",
+        "TOC2": "20:30"
+    },
+    "links": {
+        "Link1": "https://sdsc.edu",
+        "Link2": "https://github.com"
+    },
+    "mp4_path": "recordings/week4.mp4",
+    "vtt_path": "recordings/week4.vtt"
+}
