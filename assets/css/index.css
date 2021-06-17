@@ -23,6 +23,22 @@ video::cue {
 #sub-content {
     width: auto;
     min-height: 60vh;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+@media only screen and (max-width: 1200px) {
+    #sub-content {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #sub-content {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 
 #title {
@@ -30,18 +46,18 @@ video::cue {
 }
 
 #content-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
 
 #transcript {
-    width: 500px;
     max-height: 400px;
     overflow-y: scroll;
 }
 
 #video {
+    max-width: 1280px;
+    width: 100%;
     padding: 20px;
 }
 
