@@ -1,0 +1,66 @@
+video::cue {
+    font-size: 1rem;
+}
+
+#sub-content {
+    width: auto;
+    min-height: 60vh;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+@media only screen and (max-width: 1200px) {
+    #sub-content {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #sub-content {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+#title {
+    text-align: center;
+}
+
+#content-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+#transcript {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+#video {
+    max-width: 1280px;
+    width: 100%;
+    padding: 20px;
+}
+
+#toc {
+    font-weight: bold;
+}
+
+#toc > a {
+    cursor: pointer;
+}
+
+.cue {
+    margin-bottom: 2px;
+    transition: color background-color 0.75s ease;
+}
+
+.cue:hover {
+    color: #0160e4;
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: rgb(255, 255, 128);
+}

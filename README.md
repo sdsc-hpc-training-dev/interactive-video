@@ -7,19 +7,18 @@ Refactored old interactive video project into a modular & easy to use template
 -   `assets`: assets used by _this_ project (not to be confused with `sdsc` which includes sdsc header & footer templates)
 -   `php`: legacy php used to keep track of user events
 -   `sdsc`: header & footer files
--   `template`: template files
 -   `.gitignore`: configured to ignore everything else so we can create other folders and put stuff in them without worrying about changes to the repo
 -   `.prettierrc`: good format tool rc file for my VSCode extension
 
 ## How to Use
 
-1. Make a new directory and copy the files (`index.html` and `config.json`) from `template` folder to it
+1. Make a new directory and copy `config.json` from `sample.json` to it
 2. Modify `config.json` and test the site
-3. Done! (no need to modify `index.html`)
+3. Done!
 
 ## Config Format
 
-Here's annotated `config.json` in `template` directory:
+Here's annotated `sample.json`:
 
 ```
 {
