@@ -1,3 +1,2 @@
-Redirect /template/ /
 RewriteEngine on
 RewriteRule ^(\w+)/$ /video.html

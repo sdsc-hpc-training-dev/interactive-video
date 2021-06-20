@@ -3,7 +3,6 @@
 $res = array();
 $res['list'] = array();
 foreach (glob("./*/config.json") as $filename) {
-    if ($filename == "./template/config.json") continue;
     $config = file_get_contents($filename);
     $json = json_decode($config, true);
     $obj = array();
