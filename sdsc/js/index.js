@@ -4,6 +4,7 @@ const loadScript = async (id, src) => {
 };
 
 window.onload = () => {
-    loadScript('header', '../sdsc/header.html');
-    loadScript('footer', '../sdsc/footer.html');
+    const root = document.getElementById('web-root').textContent;
+    loadScript('header', `${root}/sdsc/header.html`);
+    loadScript('footer', `${root}/sdsc/footer.html`);
 };
