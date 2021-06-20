@@ -1,6 +1,6 @@
 const loadScript = async (id, src, root) => {
     const res = await fetch(src);
-    document.getElementById(id).innerHTML = (await res.text()).replace('{ROOT}', root);
+    document.getElementById(id).innerHTML = (await res.text()).replace(/\{ROOT\}/g, root);
 };
 
 window.onload = () => {
