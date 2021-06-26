@@ -55,7 +55,7 @@
         } else if (args.length === 2) {
             return [text, time, ~~args[0] * 60 + ~~args[1]];
         } else if (args.length === 3) {
-            return [text, time, ~~args[0] * 60 * 60 + ~~args[1] * 60 + ~~args[0]];
+            return [text, time, ~~args[0] * 60 * 60 + ~~args[1] * 60 + ~~args[2]];
         } else {
             return [text, time, NaN];
         }
