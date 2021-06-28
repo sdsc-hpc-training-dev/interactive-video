@@ -47,27 +47,31 @@
     const toc = Object.entries(config.toc || {});
     const tocElem = document.getElementById('toc');
 
-    // Parse time string to number in seconds
-    toc.map(([text, time]) => {
-        const args = time.split(':');
-        if (args.length === 1) {
-            return [text, time, ~~args[0]];
-        } else if (args.length === 2) {
-            return [text, time, ~~args[0] * 60 + ~~args[1]];
-        } else if (args.length === 3) {
-            return [text, time, ~~args[0] * 60 * 60 + ~~args[1] * 60 + ~~args[2]];
-        } else {
-            return [text, time, NaN];
-        }
-        // Map items to html elements
-    }).forEach(([text, timeText, time]) => {
-        if (isNaN(time)) return;
-        const a = document.createElement('a');
-        a.onclick = () => (videoElem.currentTime = time);
-        a.textContent = `${timeText} - ${text}`;
-        tocElem.appendChild(a);
-        tocElem.appendChild(document.createElement('br'));
-    });
+    if (!Object.keys(toc).length) {
+        tocElem.innerHTML = `<p style="color: #d31820">To Be Added</p>`;
+    } else {
+        // Parse time string to number in seconds
+        toc.map(([text, time]) => {
+            const args = time.split(':');
+            if (args.length === 1) {
+                return [text, time, ~~args[0]];
+            } else if (args.length === 2) {
+                return [text, time, ~~args[0] * 60 + ~~args[1]];
+            } else if (args.length === 3) {
+                return [text, time, ~~args[0] * 60 * 60 + ~~args[1] * 60 + ~~args[2]];
+            } else {
+                return [text, time, NaN];
+            }
+            // Map items to html elements
+        }).forEach(([text, timeText, time]) => {
+            if (isNaN(time)) return;
+            const a = document.createElement('a');
+            a.onclick = () => (videoElem.currentTime = time);
+            a.textContent = `${timeText} - ${text}`;
+            tocElem.appendChild(a);
+            tocElem.appendChild(document.createElement('br'));
+        });
+    }
 
     /** @type {TextTrackCue[]} */
     let cues = [];
