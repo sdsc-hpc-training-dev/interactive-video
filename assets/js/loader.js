@@ -115,6 +115,7 @@
 
     // Initilize clicable cue items after track is loaded
     trackElem.onload = () => {
+        trackElem.track.mode = 'disabled'; // Disable by default
         cues.push(...trackElem.track.cues); // Keep track of the cues
 
         for (const cue of cues) {
