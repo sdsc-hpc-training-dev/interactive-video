@@ -156,16 +156,22 @@
     /** @type {HTMLInputElement} */
     const searchInput = document.getElementById('transcript-search');
     const result = document.getElementById('search-result');
+    const count = document.getElementById('result-count');
     searchInput.onchange = () => {
         const value = searchInput.value.trim();
         if (!fuse) {
-            result.innerHTML = 'Please wait until the transcript loads';
+            result.innerHTML = 'Transcript not loaded';
+            count.innerText = '';
         } else if (value.length < 3) {
-            result.innerHTML = 'Please enter something longer to search';
+            result.innerHTML = 'Search term is too short!';
+            count.innerText = '';
         } else {
             /** @type {{ item: string, refIndex: number, score: number  }[]} */
             const arr = fuse.search(value);
             result.innerHTML = '';
+            count.innerText = `${arr.length} result${arr.length > 1 ? 's' : ''} ${
+                arr.length > 100 ? ` (showing 100 out of ${arr.length})` : ''
+            }`;
             for (const match of arr.slice(0, 100)) {
                 const p = document.createElement('p');
                 p.className = 'result';
@@ -175,7 +181,7 @@
                 };
                 const seconds = ~~cues[match.refIndex].startTime;
                 const str = new Date(seconds * 1000).toISOString().substr(11, 8);
-                p.innerText = `${str} ...${match.item}...`;
+                p.innerText = `${str} ...${match.item.replace(/^.+: /, '')}...`;
                 result.appendChild(p);
             }
         }
