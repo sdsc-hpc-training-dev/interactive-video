@@ -132,7 +132,7 @@
             cue.onenter = () => {
                 // Scroll to this this item
                 if (hasAutoScroll())
-                    cueList.scrollTo({ top: item.offsetTop, behavior: 'smooth' });
+                    cueList.scrollTo({ top: item.offsetTop - 500, behavior: 'smooth' });
 
                 // Remove any highlighted item's highlight
                 document
