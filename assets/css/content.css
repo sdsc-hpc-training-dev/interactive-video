@@ -29,8 +29,9 @@ video::cue {
 
 #content-container {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 3fr;
+    grid-template-columns: 2fr 2fr;
     column-gap: 15px;
+    margin-bottom: 20px;
 }
 
 #transcript {
