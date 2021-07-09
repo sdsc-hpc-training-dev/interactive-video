@@ -29,7 +29,7 @@ video::cue {
 
 #content-container {
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 2fr 3fr;
     column-gap: 15px;
     margin-bottom: 20px;
 }
