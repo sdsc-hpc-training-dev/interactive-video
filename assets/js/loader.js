@@ -75,6 +75,7 @@
 
     /** @type {TextTrackCue[]} */
     let cues = [];
+    let fuse;
 
     const enterCueManually = () => {
         const index = cues.findIndex(c => c.endTime > videoElem.currentTime);
@@ -117,6 +118,12 @@
     trackElem.onload = () => {
         cues.push(...trackElem.track.cues); // Keep track of the cues
 
+        // Search library initialization
+        fuse = new Fuse(
+            cues.map(c => c.text),
+            { includeScore: true },
+        );
+
         for (const cue of cues) {
             const item = document.createElement('p');
             item.textContent = cue.text.replace(/^.+: /, ''); // Get rid of names
@@ -144,5 +151,33 @@
         }
 
         trackElem.track.mode = 'disabled'; // Disable by default
+    };
+
+    /** @type {HTMLInputElement} */
+    const searchInput = document.getElementById('transcript-search');
+    const result = document.getElementById('search-result');
+    searchInput.onchange = () => {
+        const value = searchInput.value.trim();
+        if (!fuse) {
+            result.innerHTML = 'Please wait until the transcript loads';
+        } else if (value.length < 3) {
+            result.innerHTML = 'Please enter something longer to search';
+        } else {
+            /** @type {{ item: string, refIndex: number, score: number  }[]} */
+            const arr = fuse.search(value);
+            result.innerHTML = '';
+            for (const match of arr.slice(0, 100)) {
+                const p = document.createElement('p');
+                p.className = 'result';
+                p.onclick = () => {
+                    videoElem.currentTime = cues[match.refIndex].startTime;
+                    cues[match.refIndex].onenter();
+                };
+                const seconds = ~~cues[match.refIndex].startTime;
+                const str = new Date(seconds * 1000).toISOString().substr(11, 8);
+                p.innerText = `${str} ...${match.item}...`;
+                result.appendChild(p);
+            }
+        }
     };
 })();

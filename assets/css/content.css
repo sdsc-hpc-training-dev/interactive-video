@@ -39,6 +39,15 @@ video::cue {
     overflow-y: scroll;
 }
 
+#search-container {
+    margin-left: 20px;
+}
+
+#search-result {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
 #video {
     max-width: 1280px;
     width: 100%;
@@ -53,12 +62,14 @@ video::cue {
     cursor: pointer;
 }
 
-.cue {
+.cue,
+.result {
     margin-bottom: 2px;
     transition: color background-color 0.75s ease;
 }
 
-.cue:hover {
+.cue:hover,
+.result:hover {
     color: #0160e4;
     cursor: pointer;
 }

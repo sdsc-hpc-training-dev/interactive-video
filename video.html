@@ -13,6 +13,7 @@
         <link type="text/css" rel="stylesheet" href="../sdsc/css/common_clean.css" />
         <link type="text/css" rel="stylesheet" href="../assets/css/index.css" />
         <link type="text/css" rel="stylesheet" href="../assets/css/content.css" />
+        <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
         <script src="../sdsc/js/index.js"></script>
         <script src="../assets/js/loader.js"></script>
     </head>
@@ -49,6 +50,15 @@
                         </div>
                         <div>
                             <video id="video" controls></video>
+                            <div id="search-container">
+                                <h2>Transcript Search</h2>
+                                <input
+                                    id="transcript-search"
+                                    type="text"
+                                    placeholder="Enter search term..."
+                                />
+                                <div id="search-result"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
