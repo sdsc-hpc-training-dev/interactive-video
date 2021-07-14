@@ -78,7 +78,7 @@
     let fuse;
 
     const enterCueManually = () => {
-        const past = cues.filter(c => videoElem.currentTime > c.startTime);
+        const past = cues.filter(c => videoElem.currentTime >= c.startTime);
         const cue = past[past.length - 1] || cues[0];
         cue.onenter();
     };
