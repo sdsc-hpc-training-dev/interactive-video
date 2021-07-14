@@ -115,6 +115,32 @@
         if (trackElem.track.mode === 'disabled') enterCueManually();
     };
 
+    document.addEventListener('keydown', e => {
+        const k = e.code;
+        if (k === 'ArrowLeft') {
+            videoElem.currentTime -= 10;
+            if (videoElem.currentTime <= 0) {
+                videoElem.pause();
+                videoElem.currentTime = 0;
+            }
+            e.preventDefault();
+        } else if (k === 'ArrowRight') {
+            videoElem.currentTime += 10;
+            if (videoElem.currentTime >= videoElem.duration) {
+                videoElem.pause();
+                videoElem.currentTime = videoElem.duration;
+            }
+            e.preventDefault();
+        } else if (k === 'Space') {
+            if (videoElem.paused || videoElem.ended) {
+                videoElem.play();
+            } else {
+                videoElem.pause();
+            }
+            e.preventDefault();
+        }
+    });
+
     // Initilize clicable cue items after track is loaded
     trackElem.onload = () => {
         cues.push(...trackElem.track.cues); // Keep track of the cues
