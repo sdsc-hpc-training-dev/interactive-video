@@ -26,7 +26,7 @@
 
     const title = config.title || 'Undefined Title';
     const subtitle = config.subtitle || 'Undefined Subtitle';
-    const description = config.description || 'Undefined Description';
+    const description = config.description;
 
     document.getElementById('nav-breadcrumbs').innerHTML = `
     <li><a href="https://www.sdsc.edu/">Home</a> &gt;</li>
@@ -36,7 +36,8 @@
 
     document.title = document.getElementById('title').textContent = title;
     document.getElementById('subtitle').textContent = subtitle;
-    document.getElementById('description').textContent = description;
+    if (description) document.getElementById('description').textContent = description;
+    else document.getElementById('description').remove();
 
     const links = Object.entries(config.links || {});
     document.getElementById('links').innerHTML = links
