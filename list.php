@@ -1,6 +1,9 @@
 <?php
 
-$res = array();
+if (file_exists("./page.json")) {
+    $res = (array) json_decode(file_get_contents("./page.json"));
+} else $res = array();
+
 $res['list'] = array();
 foreach (glob("./*/config.json") as $filename) {
     $config = file_get_contents($filename);
@@ -13,8 +16,6 @@ foreach (glob("./*/config.json") as $filename) {
     $obj['time'] = strtotime($json['date']);
     array_push($res['list'], $obj);
 }
-
-$res['title'] = 'HPC User Training 2021';
 
 echo json_encode($res);
 
