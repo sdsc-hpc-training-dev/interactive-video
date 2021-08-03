@@ -27,6 +27,7 @@
         document.getElementById('nav-breadcrumbs').innerHTML = `
         <li><a href="https://www.sdsc.edu/">Home</a> &gt;</li>
         <li><a href="https://www.sdsc.edu/education_and_training/index.html">Education &amp; Training</a> &gt; </li>
+        <li><a href="https://education.sdsc.edu/training/interactive/">Interactive Videos</a> &gt; </li>
         <li><a href="../">${page.title || 'Page Title'}</a> &gt;</li>
         <li>404</li>`;
         document.title = document.getElementById('title').textContent =
@@ -41,6 +42,7 @@
     document.getElementById('nav-breadcrumbs').innerHTML = `
     <li><a href="https://www.sdsc.edu/">Home</a> &gt;</li>
     <li><a href="https://www.sdsc.edu/education_and_training/index.html">Education &amp; Training</a> &gt; </li>
+    <li><a href="https://education.sdsc.edu/training/interactive/">Interactive Videos</a> &gt; </li>
     <li><a href="../">${page.title || 'Page Title'}</a> &gt;</li>
     <li>${title}</li>`;
 
