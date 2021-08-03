@@ -1,3 +1,10 @@
+/*
+FFMPEG commands for splitting video at 50 minutes time mark:
+
+ffmpeg -i file.mp4 -t 00:50:00 -c copy part1.mp4 \
+-ss 00:50:00 -c copy part2.mp4
+*/
+
 const webvtt = require('node-webvtt');
 const fs = require('fs');
 
