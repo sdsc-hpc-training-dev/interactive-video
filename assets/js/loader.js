@@ -108,6 +108,10 @@
     /** @type {HTMLVideoElement} */
     const videoElem = document.getElementById('video');
 
+    document.getElementById('playback-speed').addEventListener('change', function () {
+        videoElem.playbackRate = parseFloat(this.value);
+    });
+
     // Load video into a <source> element
     const sourceElem = document.createElement('source');
     sourceElem.src = config.mp4_path;

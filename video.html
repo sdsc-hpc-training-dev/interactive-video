@@ -51,7 +51,22 @@
                         <div>
                             <video id="video" controls></video>
                             <div id="search-container">
-                                <h2>Transcript Search</h2>
+                                <h2>
+                                    <span>Transcript Search</span>
+                                    <select id="playback-speed" style="float: right">
+                                        <option value="0.25">0.25x</option>
+                                        <option value="0.5">0.5x</option>
+                                        <option value="0.75">0.75x</option>
+                                        <option value="1" selected>1x</option>
+                                        <option value="1.25">1.25x</option>
+                                        <option value="1.5">1.5x</option>
+                                        <option value="1.75">1.75x</option>
+                                        <option value="2.0">2x</option>
+                                    </select>
+                                    <span style="float: right; font-size: 16px"
+                                        >Playback speed&nbsp;
+                                    </span>
+                                </h2>
                                 <input
                                     id="transcript-search"
                                     type="text"
