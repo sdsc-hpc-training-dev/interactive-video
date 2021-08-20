@@ -12,6 +12,8 @@
 !sample.json
 !scripts
 !scripts/**
+scripts/*.json
+scripts/*.txt
 !sdsc
 !sdsc/**
 !assets
