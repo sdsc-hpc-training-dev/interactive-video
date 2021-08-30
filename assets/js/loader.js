@@ -250,6 +250,8 @@
         // Multiple parts
         const len = Math.min(config.mp4_path.length, config.vtt_path.length);
         const container = document.createElement('div');
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
         videoElem.parentElement.prepend(container);
 
         let currPart = 0;

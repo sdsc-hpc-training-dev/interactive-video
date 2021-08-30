@@ -79,6 +79,10 @@ video::cue {
     margin-right: 15px;
 }
 
+.part:last-child {
+    margin-right: 0px;
+}
+
 .part:hover {
     background-color: #bd131b;
 }
