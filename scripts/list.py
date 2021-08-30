@@ -22,6 +22,7 @@ def main():
 
     parser.add_argument("--verbose", help="Increase output verbosity", action="store_true")
     parser.add_argument("--hide-pg", help="Hide progress bar", action="store_true")
+    parser.add_argument("--no-color", help="Hide ANSI colors", action="store_true")
 
     # Drive ID and dist folder
     parser.add_argument('--drive', required=True, help="Drive ID (token at the end of the URL at root level in the drive)")
@@ -36,6 +37,9 @@ def main():
 
     verbose = args.verbose
     hide_progress = args.hide_pg
+
+    if args.no_color:
+        hide_colors()
 
     drive_id = args.drive
     dist_folder_name = args.dist
@@ -207,15 +211,18 @@ class colors:
     ENDC = '\033[0m'
     UNDERLINE = '\033[4m'
 
+def hide_colors():
+    colors.OKCYAN = ''
+    colors.OKGREEN = ''
+    colors.WARNING = ''
+    colors.FAIL = ''
+    colors.ENDC = ''
+    colors.UNDERLINE = ''
+
 if __name__ == '__main__':
 
     if not sys.stdout.isatty() or not sys.stderr.isatty():
-        colors.OKCYAN = ''
-        colors.OKGREEN = ''
-        colors.WARNING = ''
-        colors.FAIL = ''
-        colors.ENDC = ''
-        colors.UNDERLINE = ''
+        hide_colors()
     else:
         system("color")
 
