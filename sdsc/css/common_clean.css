@@ -44,6 +44,16 @@ nav {
     margin: 0;
     padding: 0;
 }
+/* temporary banner on every page */
+#covid-banner {
+    width: 100%;
+    height: 27px;
+    padding-top: 14px;
+    background-color: #7f0e13;
+    color: #ffff00;
+    font-weight: bold;
+    text-align: center;
+}
 table,
 th,
 td {
@@ -250,7 +260,7 @@ p.aside-small {
     position: fixed;
     top: 0;
     left: 0;
-    height: 125px;
+    height: 171px;
     width: 100%;
     clear: both;
     background: black;
@@ -889,6 +899,7 @@ input[type='search'] {
     *color: #ccc;
     font-size: 0 !important;
     cursor: pointer;
+    background-image: url(../img/bg-sprite-24.png);
     background-repeat: no-repeat;
     background-position: 0 100px;
     transition: background-color 0.15s;
@@ -936,7 +947,7 @@ input[type='search'] {
     *color: #ccc;
     font-size: 0 !important;
     cursor: pointer;
-    background-image: url(../images/bg-sprite-24.png);
+    background-image: url(../img/bg-sprite-24.png);
     background-repeat: no-repeat;
     background-position: 0 100px;
     transition: background-color 0.15s;
