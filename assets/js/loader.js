@@ -268,7 +268,7 @@
         for (let i = 0; i < len; i++) {
             const button = document.createElement('button');
             button.classList.add('part');
-            button.innerText = `Part ${i + 1}`;
+            button.innerText = `Section ${i + 1}`;
             container.appendChild(button);
             button.onclick = () => {
                 if (currPart != i) {
