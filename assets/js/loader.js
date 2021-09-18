@@ -264,6 +264,7 @@
             );
         };
 
+        const buttons = [];
         for (let i = 0; i < len; i++) {
             const button = document.createElement('button');
             button.classList.add('part');
@@ -273,8 +274,12 @@
                 if (currPart != i) {
                     currPart = i;
                     update();
+
+                    for (const b of buttons) b.style.backgroundColor = '#888';
+                    button.style.backgroundColor = '#d31820';
                 }
             };
+            buttons.push(button);
         }
 
         update();
