@@ -279,7 +279,7 @@
                     button.style.backgroundColor = '#d31820';
                 }
             };
-            if (!i) b.style.backgroundColor = '#d31820';
+            if (!i) button.style.backgroundColor = '#d31820';
             buttons.push(button);
         }
 
