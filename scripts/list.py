@@ -24,6 +24,7 @@ def main():
     parser.add_argument("--hide-pg", help="Hide progress bar", action="store_true")
     parser.add_argument("--no-color", help="Hide ANSI colors", action="store_true")
     parser.add_argument("--skip-exist", help="Skip already downloaded", action="store_true")
+    parser.add_argument("--list-only", help="List the files without downloading them", action="store_true")
 
     # Drive ID and dist folder
     parser.add_argument('--drive', required=True, help="Drive ID (token at the end of the URL at root level in the drive)")
@@ -39,6 +40,7 @@ def main():
     verbose = args.verbose
     hide_progress = args.hide_pg
     skip_exist = args.skip_exist
+    list_only = args.list_only
 
     if args.no_color:
         hide_colors()
@@ -173,6 +175,10 @@ def main():
             print(f"{colors.WARNING}Skipping{colors.ENDC} {colors.UNDERLINE}{filename}{colors.ENDC}")
             continue
 
+        if list_only:
+            print(f"{colors.WARNING}File{colors.ENDC} {colors.UNDERLINE}{filename}{colors.ENDC}")
+            continue
+
         fh = io.FileIO(filename, mode="wb")
         req = file_service.get_media(fileId = file["id"])
         req.uri = req.uri.replace('alt=json', 'alt=media')
@@ -184,18 +190,17 @@ def main():
         pg = 0
 
         def print_progress(name, done = False):
-            if hide_progress:
-                if done:
-                    sys.stderr.write(f'{colors.OKGREEN}Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\n')
-                return
 
             p1 = '=' * pg
             p2 = ' ' * max((pg_bar_width - pg - 1), 0)
             perc = str(round(status.progress() * 100)).rjust(3)
-            if not done or pg == pg_bar_width:
+            if not done or pg != pg_bar_width:
                 sys.stderr.write(f'{colors.OKCYAN}[{p1}>{p2}] {perc}% Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\r')
-            else:
-                sys.stderr.write(f'{colors.OKGREEN}[{"=" * pg_bar_width}] {perc}% Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\r')
+            elif done:
+                if hide_progress:
+                    sys.stderr.write(f'{colors.OKGREEN}Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\n')
+                else:
+                    sys.stderr.write(f'{colors.OKGREEN}[{"=" * pg_bar_width}] {perc}% Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\n')
 
         # Download this file
         done = False
