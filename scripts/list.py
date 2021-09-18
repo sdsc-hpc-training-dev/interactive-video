@@ -1,5 +1,6 @@
 import io
 import sys
+import platform
 import errno
 from os import system
 import os.path
@@ -18,9 +19,11 @@ SCOPES = ['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.
 def main():
     parser = argparse.ArgumentParser()
 
+    # Optional arguments
     parser.add_argument("--verbose", help="Increase output verbosity", action="store_true")
     parser.add_argument("--hide-pg", help="Hide progress bar", action="store_true")
     parser.add_argument("--no-color", help="Hide ANSI colors", action="store_true")
+    parser.add_argument("--skip-exist", help="Skip already downloaded", action="store_true")
 
     # Drive ID and dist folder
     parser.add_argument('--drive', required=True, help="Drive ID (token at the end of the URL at root level in the drive)")
@@ -35,6 +38,7 @@ def main():
 
     verbose = args.verbose
     hide_progress = args.hide_pg
+    skip_exist = args.skip_exist
 
     if args.no_color:
         hide_colors()
@@ -165,6 +169,10 @@ def main():
                 if exc.errno != errno.EEXIST:
                     raise
 
+        if skip_exist and os.path.exists(filename):
+            print(f"{colors.WARNING}Skipping{colors.ENDC} {colors.UNDERLINE}{filename}{colors.ENDC}")
+            continue
+
         fh = io.FileIO(filename, mode="wb")
         req = file_service.get_media(fileId = file["id"])
         req.uri = req.uri.replace('alt=json', 'alt=media')
@@ -178,16 +186,16 @@ def main():
         def print_progress(name, done = False):
             if hide_progress:
                 if done:
-                    sys.stderr.write(f'\r{colors.OKGREEN}Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}')
+                    sys.stderr.write(f'{colors.OKGREEN}Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\n')
                 return
 
             p1 = '=' * pg
             p2 = ' ' * max((pg_bar_width - pg - 1), 0)
             perc = str(round(status.progress() * 100)).rjust(3)
-            if not done:
-                sys.stderr.write(f'\r{colors.OKCYAN}[{p1}>{p2}] {perc}% Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}')
+            if not done or pg == pg_bar_width:
+                sys.stderr.write(f'{colors.OKCYAN}[{p1}>{p2}] {perc}% Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\r')
             else:
-                sys.stderr.write(f'\r{colors.OKGREEN}[{"=" * pg_bar_width}] {perc}% Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}')
+                sys.stderr.write(f'{colors.OKGREEN}[{"=" * pg_bar_width}] {perc}% Downloaded{colors.ENDC} {colors.UNDERLINE}{name}{colors.ENDC}\r')
 
         # Download this file
         done = False
@@ -201,7 +209,6 @@ def main():
             if done:
                 pg = pg_bar_width
                 print_progress(file['path'], True)
-                sys.stderr.write("\n")
 
 class colors:
     OKCYAN = '\033[96m'
@@ -223,7 +230,7 @@ if __name__ == '__main__':
 
     if not sys.stdout.isatty() or not sys.stderr.isatty():
         hide_colors()
-    else:
+    elif platform.system() == "Windows":
         system("color")
 
     main()
