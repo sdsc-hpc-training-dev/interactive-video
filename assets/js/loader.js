@@ -137,7 +137,7 @@
             cueList.innerHTML = '';
             for (const cue of cues) {
                 const item = document.createElement('p');
-                item.textContent = cue.text.replace(/^.+: /, ''); // Get rid of names
+                item.textContent = cue.text.replace(/^.+: /, '').replace(/^\<v \w+\>/, "").replace(/\<\/\>$/, ""); // Get rid of names
                 item.classList.add('cue');
                 cueList.appendChild(item);
 
