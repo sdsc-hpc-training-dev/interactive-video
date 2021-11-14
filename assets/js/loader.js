@@ -15,7 +15,6 @@
     } catch (_) {
         // document.title = document.getElementById('title').textContent =
         //     '404 (page.json not found for parent directory)';
-        return;
     }
 
     let config = {};
