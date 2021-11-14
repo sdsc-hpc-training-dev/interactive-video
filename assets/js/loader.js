@@ -7,14 +7,14 @@
         dirs.pop();
     }
 
-    let page = {};
+    let page = null;
 
     try {
         const res = await fetch(`${dirs.slice(0, -1).join('/')}/page.json`);
         page = await res.json();
     } catch (_) {
-        document.title = document.getElementById('title').textContent =
-            '404 (page.json not found for parent directory)';
+        // document.title = document.getElementById('title').textContent =
+        //     '404 (page.json not found for parent directory)';
         return;
     }
 
@@ -39,12 +39,22 @@
     const subtitle = config.subtitle || 'Undefined Subtitle';
     const description = config.description;
 
-    document.getElementById('nav-breadcrumbs').innerHTML = `
-    <li><a href="https://www.sdsc.edu/">Home</a> &gt;</li>
-    <li><a href="https://www.sdsc.edu/education_and_training/index.html">Education &amp; Training</a> &gt; </li>
-    <li><a href="https://education.sdsc.edu/training/interactive/">Interactive Videos</a> &gt; </li>
-    <li><a href="../">${page.title || 'Page Title'}</a> &gt;</li>
-    <li>${title}</li>`;
+    if (page) {
+        // Video series
+        document.getElementById('nav-breadcrumbs').innerHTML = `
+            <li><a href="https://www.sdsc.edu/">Home</a> &gt;</li>
+            <li><a href="https://www.sdsc.edu/education_and_training/index.html">Education &amp; Training</a> &gt; </li>
+            <li><a href="https://education.sdsc.edu/training/interactive/">Interactive Videos</a> &gt; </li>
+            <li><a href="../">${page.title || 'Page Title'}</a> &gt;</li>
+            <li>${title}</li>`;
+    } else {
+        // Single webinar
+        document.getElementById('nav-breadcrumbs').innerHTML = `
+            <li><a href="https://www.sdsc.edu/">Home</a> &gt;</li>
+            <li><a href="https://www.sdsc.edu/education_and_training/index.html">Education &amp; Training</a> &gt; </li>
+            <li><a href="https://education.sdsc.edu/training/interactive/">Interactive Videos</a> &gt; </li>
+            <li>${title}</li>`;
+    }
 
     document.title = document.getElementById('title').textContent = title;
     document.getElementById('subtitle').textContent = subtitle;
