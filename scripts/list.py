@@ -25,6 +25,7 @@ def main():
     parser.add_argument("--no-color", help="Hide ANSI colors", action="store_true")
     parser.add_argument("--skip-exist", help="Skip already downloaded", action="store_true")
     parser.add_argument("--list-only", help="List the files without downloading them", action="store_true")
+    parser.add_argument("--flat", help="Download files without preserving folder structures", action="store_true", default=False)
     parser.add_argument("--ext", help="File extension to download", type=str)
 
     # Drive ID and dist folder
@@ -43,6 +44,7 @@ def main():
     skip_exist = args.skip_exist
     list_only = args.list_only
     ext = args.ext
+    flat = args.flat
 
     if args.no_color:
         hide_colors()
@@ -159,7 +161,10 @@ def main():
                 continue
             download[file["name"]] = file
 
-            file['path'] = build_path(file["parents"][0], file["name"])
+            if flat:
+                file['path'] = file['name']
+            else:
+                file['path'] = build_path(file["parents"][0], file["name"])
             if verbose:
                 print(f"Download queued: {file['path']}")
 
