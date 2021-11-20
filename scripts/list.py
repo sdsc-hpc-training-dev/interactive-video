@@ -25,6 +25,7 @@ def main():
     parser.add_argument("--no-color", help="Hide ANSI colors", action="store_true")
     parser.add_argument("--skip-exist", help="Skip already downloaded", action="store_true")
     parser.add_argument("--list-only", help="List the files without downloading them", action="store_true")
+    parser.add_argument("--ext", help="File extension to download", type=str)
 
     # Drive ID and dist folder
     parser.add_argument('--drive', required=True, help="Drive ID (token at the end of the URL at root level in the drive)")
@@ -41,6 +42,7 @@ def main():
     hide_progress = args.hide_pg
     skip_exist = args.skip_exist
     list_only = args.list_only
+    ext = args.ext
 
     if args.no_color:
         hide_colors()
@@ -147,6 +149,10 @@ def main():
     download = {}
     for file in res['files']:
         if sum([p in targets for p in file['parents']]):
+
+            if ext is not None and not file['name'].endswith(ext):
+                print(f"Skipping file: {file['name']}")
+                continue
 
             if file["name"] in download:
                 print(f"Duplicate file: {file['name']}")
