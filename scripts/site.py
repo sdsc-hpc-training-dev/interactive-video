@@ -1,7 +1,7 @@
-import xml.etree.ElementTree as ET
-import requests
 import json
+import requests
 import argparse
+import xml.etree.ElementTree as ET
 
 def sync_events():
     res = requests.get("https://www.sdsc.edu/news_and_events/events.xml")
@@ -16,7 +16,7 @@ def sync_events():
 
         page_id = page_node.get("id")
         name = page_node.find("name").text
-        title = page_node.find("title").text
+        title = page_node.find("display-name").text
 
         start = page_node.find("start-date")
         start_ts = int(start.text) if start is not None else None
@@ -34,6 +34,16 @@ def sync_events():
         instr_title = instr_node.find("instructor_title").text
         instr_bio = instr_node.find("instructor_bio").text
 
+        external_links = page_node.findall(".//external_link")
+
+        intvid_link = None
+        for link_node in external_links:
+            link = link_node.text
+            if link is None:
+                continue
+            if link.startswith("https://education.sdsc.edu/training/interactive/"):
+                intvid_link = link.replace("https://education.sdsc.edu/training/interactive/", "")
+
         events[page_id] = {
             "name": name,
             "title": title,
@@ -47,7 +57,8 @@ def sync_events():
                 "label": instr_label,
                 "title": instr_title,
                 "bio": instr_bio
-            }
+            },
+            "vid_link": intvid_link
         }
 
     json.dump(events, open("events.json", "w"), indent=4)
@@ -68,33 +79,33 @@ def build_html():
         print("events.json required (run with --sync first before build)")
         return
 
-    try:
-        pages = json.load(open("pages.json"))
-    except:
-        print("pages.json required { key: page_id => value: link_to_page }")
-        return
-
     sections = []
-    for key in pages:
-        if key not in events:
-            continue
+    for key in events:
 
-        link = pages[key]
         item = events[key]
-        
-        sections.append(f"""
-        <h2>
-            <a href="{link}">{item["title"]}</a>
-        </h2>
-        <p>
-            <em>{item["desc"]["long"] or item["desc"]["short"]}</em>
-        </p>
-        """)
+        link = item["vid_link"]
 
-    with open("index.html", "w", encoding="utf8") as out:
+        if link is None:
+            sections.append(f"""
+                <h2>{item["title"]}</h2>
+                <p>
+                    <em>{item["desc"]["long"] or item["desc"]["short"]}</em>
+                </p>
+                """)
+        else:
+            sections.append(f"""
+            <h2>
+                <a href="{link}">{item["title"]}</a>
+            </h2>
+            <p>
+                <em>{item["desc"]["long"] or item["desc"]["short"]}</em>
+            </p>
+            """)
+
+    with open("dev.html", "w", encoding="utf8") as out:
         out.write(html.replace("{PAGES}", "</hr>".join(sections)))
 
-    print(f"Built index.html with {len(sections)} pages")
+    print(f"Built dev.html with {len(sections)} pages")
    
 def main():
     parser = argparse.ArgumentParser()
