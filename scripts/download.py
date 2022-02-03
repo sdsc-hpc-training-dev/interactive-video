@@ -16,6 +16,7 @@ from google.oauth2.credentials import Credentials
 CRED_FILE = 'gdrive-cred.json'
 # If scopes are modified, delete token.json.
 SCOPES = ['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive.readonly']
+TOKEN_FILE = os.path.join(os.path.expanduser("~"), ".iv-token.json")
 
 def main():
     parser = argparse.ArgumentParser()
@@ -60,8 +61,8 @@ def main():
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
-    if os.path.exists('~/.iv-token.json'):
-        creds = Credentials.from_authorized_user_file('~/.iv-token.json', SCOPES)
+    if os.path.exists(TOKEN_FILE):
+        creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
@@ -74,10 +75,11 @@ def main():
 
             flow = InstalledAppFlow.from_client_secrets_file(
                 CRED_FILE, SCOPES)
+            print(f"Please wait for a firefox browser to popup and ignore the console")
             creds = flow.run_local_server(port=0)
 
         # # Save the credentials for the next run
-        with open('~/.iv-token.json', 'w') as token:
+        with open(TOKEN_FILE, 'w') as token:
             token.write(creds.to_json())
 
     file_service = build('drive', 'v3', credentials=creds).files()
