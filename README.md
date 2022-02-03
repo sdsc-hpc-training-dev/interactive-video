@@ -2,6 +2,27 @@
 
 Refactored old interactive video project into a modular & easy to use template
 
+## Steps to Create Interactive Video (Webinar)
+
+<details>
+  <summary>1. Clone this repo</summary>
+  
+  ```bash
+    cd /www/............../training/interactive/
+    git clone https://github.com/sdsc-hpc-training-dev/interactive-video/ interactive-video-folder-name
+  ```
+</details>
+
+<details>
+  <summary>2. Run list.py</summary>
+  
+</details>
+
+1. Make a new directory and copy `config.json` from `sample.json` to it
+2. Modify `config.json` and test the site
+3. Done!
+
+
 ## Directories and Files
 
 -   `assets`: assets used by _this_ project (not to be confused with `sdsc` which includes sdsc header & footer templates)
@@ -9,12 +30,6 @@ Refactored old interactive video project into a modular & easy to use template
 -   `scripts`: useful scripts to process the videos/transcripts/download from google drive
 -   `.gitignore`: configured to ignore everything else so we can create other folders and put stuff in them without worrying about changes to the repo
 -   `.prettierrc`: good format tool rc file for my VSCode extension
-
-## How to Use
-
-1. Make a new directory and copy `config.json` from `sample.json` to it
-2. Modify `config.json` and test the site
-3. Done!
 
 ## Config Format
 
