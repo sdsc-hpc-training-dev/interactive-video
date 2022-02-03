@@ -2,19 +2,12 @@
 *
 
 # Except these files
-!.htaccess
 !.gitignore
-!.prettierrc
 !README.md
-!index.html
-!video.html
-!list.php
 !sample.json
 !scripts
 !scripts/**
 scripts/*.json
 scripts/*.txt
-!sdsc
-!sdsc/**
 !assets
 !assets/**
