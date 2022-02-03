@@ -18,7 +18,32 @@ python iv.py --webinar 202202_hello_webinar
 <details>
   <summary>download.py usage</summary>
   
-  ### TODO
+  #### Dependencies (pip install)
+  `google-api-python-client` `google_auth_oauthlib`
+  
+  ```
+  usage: python download.py [-h] [--verbose] [--hide-pg] [--no-color] [--skip-exist]
+                   [--list-only] [--flat] [--ext EXT] --drive DRIVE --dist DIST
+                   (--folder-name FOLDER_NAME | --folder-id FOLDER_ID)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Increase output verbosity
+  --hide-pg             Hide progress bar
+  --no-color            Hide ANSI colors
+  --skip-exist          Skip already downloaded
+  --list-only           List the files without downloading them
+  --flat                Download files without preserving folder structures
+  --ext EXT             File extension to download
+  --drive DRIVE         Drive ID (token at the end of the URL at root level in the
+                        drive)
+  --dist DIST           Dist folder
+  --folder-name FOLDER_NAME
+                        Folder name. If multiple folder matches, download will not
+                        start.
+  --folder-id FOLDER_ID
+                        Folder ID (token at the end of the URL
+  ```
 </details>
 
 ### Step 3
