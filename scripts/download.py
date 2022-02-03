@@ -75,7 +75,7 @@ def main():
 
             flow = InstalledAppFlow.from_client_secrets_file(
                 CRED_FILE, SCOPES)
-            print(f"Please wait for a firefox browser to popup and ignore the console")
+            print(f"{colors.WARNING}Please wait for a firefox browser to popup and ignore the output below from google_auth_oauthlib{colors.ENDC}")
             creds = flow.run_local_server(port=0)
 
         # # Save the credentials for the next run
