@@ -5,6 +5,7 @@ import platform
 
 import os
 from os import system
+from stat import *
 import shutil
 
 import requests
@@ -55,6 +56,8 @@ echo json_encode($res);
 ?>
 """
 
+def chmod_774(path):
+    os.chmod(path, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH)
 
 def sync_events():
     res = requests.get("https://sdsc.edu/education_and_training/training_hpc.xml")
@@ -199,14 +202,17 @@ def init_webinar(folder_name):
 
     try:
         os.mkdir(folder_name)
+        chmod_774(folder_name)
     except:
         print(f"{colors.WARNING}Folder already exists{colors.ENDC}")
         return
         
     shutil.copy2("webinar.html", os.path.join(folder_name, "index.html"))
+    chmod_774(os.path.join(folder_name, "index.html"))
 
     with open(os.path.join(folder_name, "config.json"), "w") as f:
         json.dump(SAMPLE_CONFIG, f, indent=4)
+    chmod_774(os.path.join(folder_name, "config.json"))
 
     print(f"{colors.OKGREEN}Webinar created: {colors.ENDC}{colors.UNDERLINE}https://education.sdsc.edu/training/interactive/{folder_name}{colors.ENDC}")
 
@@ -215,19 +221,23 @@ def init_series(folder_name, title):
 
     try:
         os.mkdir(folder_name)
+        chmod_774(folder_name)
     except:
         print(f"{colors.WARNING}Folder already exists{colors.ENDC}")
         return
         
     shutil.copy2("series_list.html", os.path.join(folder_name, "index.html"))
+    chmod_774(os.path.join(folder_name, "index.html"))
 
     with open(os.path.join(folder_name, "page.json"), "w") as f:
         json.dump({ "title": title }, f, indent=4)
+    chmod_774(os.path.join(folder_name, "page.json"))
 
     with open(os.path.join(folder_name, "list.php"), "w") as f:
         f.write(LIST_PHP)
+    chmod_774(os.path.join(folder_name, "list.php"))
 
-    print(f"{colors.OKGREEN}Series created: {colors.ENDC}{colors.UNDERLINE}https://education.sdsc.edu/training/interactive/{folder_name}{colors.ENDC}")
+    print(f"{colors.OKGREEN}Series created:{colors.ENDC} {colors.UNDERLINE}https://education.sdsc.edu/training/interactive/{folder_name}{colors.ENDC}")
 
 def add_series(series_name, folder_name):
 
@@ -239,17 +249,20 @@ def add_series(series_name, folder_name):
     
     try:
         os.mkdir(vid_path)
+        chmod_774(vid_path)
     except:
         print(f"{colors.WARNING}Folder already exists{colors.ENDC}")
         return
 
     shutil.copy2("series.html", os.path.join(vid_path, "index.html"))
+    chmod_774(os.path.join(vid_path, "index.html"))
     
-    with open(os.path.join(vid_path, "page.json"), "w") as f:
-        json.dump(SAMPLE_PAGE, f, indent=4)
+    with open(os.path.join(vid_path, "config.json"), "w") as f:
+        json.dump(SAMPLE_CONFIG, f, indent=4)
+    chmod_774(os.path.join(vid_path, "config.json"))
 
-    print(f"{colors.OKGREEN}Added video to{colors.ENDC}{colors.OKCYAN}{series_name}: " +
-        f"{colors.ENDC}{colors.UNDERLINE}https://education.sdsc.edu/training/interactive/{series_name}/{folder_name}{colors.ENDC}")
+    print(f"{colors.OKGREEN}Added video to{colors.ENDC} {colors.OKCYAN}{series_name}{colors.ENDC}: " +
+        f"{colors.UNDERLINE}https://education.sdsc.edu/training/interactive/{series_name}/{folder_name}{colors.ENDC}")
 
 class colors:
     OKCYAN = '\033[96m'
