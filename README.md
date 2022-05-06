@@ -4,7 +4,7 @@
 ## System Requirement
 **Python > 3.8** (currenly installed to user home with [pyenv](https://github.com/pyenv/pyenv))
 
-## Creating Interactive Video (Webinar)
+## Interactive Video (Webinar)
 
 ### Step 1
 ```bash
@@ -72,8 +72,19 @@ Edit `config.json` inside the folder created
 ```
 </details>
 
-## Creating Interactive Video (Series)
-TODO
+## Interactive Video (Series)
+
+### Creating the folder
+```bash
+cd /misc/www/projects/education/training/interactive
+python iv.py --series 202202_hello_series --init "Series Name To Display On the Web"
+```
+
+### Adding Video
+```bash
+python iv.py --series 202202_hello_series --add video1
+```
+The command above will create `202202_hello_series/video1/config.json` which can be edited with the same way as a regular webinar. Materials (video and slides) can be downloaded the same way as well.
 
 ## Experimental Scripts
 
