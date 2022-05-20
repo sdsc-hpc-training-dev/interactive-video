@@ -59,6 +59,9 @@ echo json_encode($res);
 def chmod_774(path):
     os.chmod(path, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH)
 
+def chmod_775(path):
+    os.chmod(path, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH)
+
 def sync_events():
     res = requests.get("https://sdsc.edu/education_and_training/training_hpc.xml")
     resText = res.text
@@ -202,7 +205,7 @@ def init_webinar(folder_name):
 
     try:
         os.mkdir(folder_name)
-        chmod_774(folder_name)
+        chmod_775(folder_name)
     except:
         print(f"{colors.WARNING}Folder already exists{colors.ENDC}")
         return
@@ -221,7 +224,7 @@ def init_series(folder_name, title):
 
     try:
         os.mkdir(folder_name)
-        chmod_774(folder_name)
+        chmod_775(folder_name)
     except:
         print(f"{colors.WARNING}Folder already exists{colors.ENDC}")
         return
@@ -249,7 +252,7 @@ def add_series(series_name, folder_name):
     
     try:
         os.mkdir(vid_path)
-        chmod_774(vid_path)
+        chmod_775(vid_path)
     except:
         print(f"{colors.WARNING}Folder already exists{colors.ENDC}")
         return
