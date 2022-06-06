@@ -90,7 +90,9 @@ The command above will create `202202_hello_series/video1/config.json` which can
 ```
 iv.py --sync --build
 ```
-Will sync and push changes to update the dev server.
+`--sync` pulls XML from sdsc.edu and stores the data in `events.json`
+`--build` reads events.json and builds `dev.html` from it
+Use in order to make changes to dev.
 
 ## Experimental Scripts
 
