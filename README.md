@@ -86,6 +86,14 @@ python iv.py --series 202202_hello_series --add video1
 ```
 The command above will create `202202_hello_series/video1/config.json` which can be edited with the same way as a regular webinar. Materials (video and slides) can be downloaded the same way as well.
 
+## Notes
+```
+iv.py --sync --build
+```
+`--sync` pulls XML from sdsc.edu and stores the data in `events.json`
+`--build` reads events.json and builds `dev.html` from it
+Use in order to make changes to dev.
+
 ## Experimental Scripts
 
 -   `split.js` - splits a VTT file and FFMPEG command to split a video
