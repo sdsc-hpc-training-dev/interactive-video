@@ -1,5 +1,13 @@
 # Interactive Video Tools & Documentation
 
+## MPT - documentation notes
+* need instructions on how the main intvid page is built (xml file, etc.)
+* need dev directory
+* config file?
+* turnkey github clone
+* dir struct
+* where are videos stored
+* file cleanup
 
 ## System Requirement
 **Python > 3.8** (currenly installed to user home with [pyenv](https://github.com/pyenv/pyenv))
